@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TS_APIS">
+  <parameter name="REPORT_FOLDER_PATTERN" value="dd_MM_yyyy"/>
+  <parameter name="ENVIRONMENT" value=""/>
+  <parameter name="GLOBAL_REPORT_PATH" value="global/"/>
+  <parameter name="DEVICE_NAME" value="chrome_local"/>
+  <parameter name="GLOBAL_REPORT_FILE_PATTERN" value="HH_mm_ss"/>
+  <parameter name="INDIVIDUAL_REPORT_PATH" value="individual/"/>
+  <parameter name="PRIORITY" value="0"/>
+  <parameter name="EMAIL_FILES_TO_ATTACH" value=""/>
+  <parameter name="ONLYFAIL" value="true"/>
+  <parameter name="EMAIL_SUBJECT" value=""/>
+  <parameter name="EMAIL_RECIPIENTS" value=""/>
+  <parameter name="SEND_EMAIL" value="false"/>
+  <parameter name="EMAIL_SERVER" value=""/>
+  <parameter name="EMAIL_ZIP_ATTACHMENTS" value="false"/>
+  <parameter name="TEST_NAME" value="TC_PruebaAPI"/>
+  <parameter name="EMAIL_PASSWORD" value=""/>
+  <parameter name="CRITICAL" value="true"/>
+  <parameter name="PARALLEL_MODE" value="false"/>
+  <parameter name="EMAIL_PORT" value="0"/>
+  <parameter name="BUILD_DATA" value="resources/tc-data-PRO.xls"/>
+  <parameter name="EMAIL_USER" value=""/>
+  <parameter name="TEST_ID" value="API_02"/>
+  <parameter name="REPORT_PATH" value="test-output/"/>
+  <parameter name="TEST_DESCRIPTION" value="llamada al servicio de firma con datos y"/>
+  <parameter name="OTHERS_REPORT_PATH" value="others/"/>
+  <parameter name="SUITE_NAME" value="TS_APIS"/>
+  <parameter name="EMAIL_TEMPLATE_PATH" value=""/>
+  <parameter name="KAFKA_TOPIC" value=""/>
+  <parameter name="KAFKA_SERVERS" value=""/>
+  <parameter name="TAGS" value="prueba_apis"/>
+  <parameter name="SMALLER_REPORT" value="true"/>
+  <test thread-count="5" verbose="3" name="API_01_TC_PruebaAPI_chrome_local">
+    <parameter name="BUILD_DATA" value="resources/tc-data-PRO.xls"/>
+    <parameter name="TEST_DESCRIPTION" value="llamada al servicio de firma con datos de x "/>
+    <parameter name="SUITE_NAME" value="TS_APIS"/>
+    <parameter name="TEST_NAME" value="TC_PruebaAPI"/>
+    <parameter name="DEVICE_NAME" value="chrome_local"/>
+    <parameter name="PRIORITY" value="0"/>
+    <parameter name="TEST_ID" value="API_01"/>
+    <parameter name="TAGS" value="prueba_apis"/>
+    <parameter name="CRITICAL" value="true"/>
+    <classes>
+      <class name="es.santander.testcases.TS_APIS.TC_PruebaAPI"/>
+    </classes>
+  </test> <!-- API_01_TC_PruebaAPI_chrome_local -->
+  <test thread-count="5" verbose="3" name="API_02_TC_PruebaAPI_chrome_local">
+    <parameter name="BUILD_DATA" value="resources/tc-data-PRO.xls"/>
+    <parameter name="TEST_DESCRIPTION" value="llamada al servicio de firma con datos y"/>
+    <parameter name="SUITE_NAME" value="TS_APIS"/>
+    <parameter name="TEST_NAME" value="TC_PruebaAPI"/>
+    <parameter name="DEVICE_NAME" value="chrome_local"/>
+    <parameter name="PRIORITY" value="0"/>
+    <parameter name="TEST_ID" value="API_02"/>
+    <parameter name="TAGS" value="prueba_apis"/>
+    <parameter name="CRITICAL" value="true"/>
+    <classes>
+      <class name="es.santander.testcases.TS_APIS.TC_PruebaAPI"/>
+    </classes>
+  </test> <!-- API_02_TC_PruebaAPI_chrome_local -->
+</suite> <!-- TS_APIS -->

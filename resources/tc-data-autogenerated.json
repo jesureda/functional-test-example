@@ -1,0 +1,1289 @@
+{
+  "execution" : {
+    "failures" : [ {
+      "failure" : "Se ha producido un error al recuperar la solicitud del cliente ctext",
+      "lowlevel" : "Se ha producido un error al recuperar la solicitud del cliente",
+      "highlevel" : "ENVIRONMENT"
+    }, {
+      "failure" : "Endpoint",
+      "lowlevel" : "",
+      "highlevel" : ""
+    }, {
+      "failure" : "Endpoint token",
+      "lowlevel" : "",
+      "highlevel" : ""
+    }, {
+      "failure" : "token DEV",
+      "lowlevel" : "http://santander.isban.dev.corp/SSOSanBCETokenAS/ws/SECMR_Def_Listener",
+      "highlevel" : ""
+    }, {
+      "failure" : "Usuarios token",
+      "lowlevel" : "",
+      "highlevel" : ""
+    }, {
+      "failure" : "user DEV",
+      "lowlevel" : "n11111",
+      "highlevel" : ""
+    }, {
+      "failure" : "pass DEV",
+      "lowlevel" : "prueba",
+      "highlevel" : ""
+    } ],
+    "data" : [ ],
+    "suites" : [ {
+      "name" : "TS_MainSuite",
+      "data" : [ ],
+      "tests" : [ {
+        "tcid" : "GP_TC00",
+        "name" : "GenerateToken",
+        "testclass" : "TC_MainCase",
+        "description" : "Se genera la llamada y obtención del token de seguridad.",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "N",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "200.0"
+        }, {
+          "name" : "request",
+          "value" : "{\n    \"credentialType\": [\n        \"JWT\"\n    ],\n    \"idAttributes\": {\n        \"uid\": \"n11111\"\n    },\n    \"password\": \"prueba\",\n    \"realm\": \"SantanderBCE\"\n}"
+        }, {
+          "name" : "headers",
+          "value" : "Accept=*/*;Connection=keep-alive;Content-type=application/json"
+        }, {
+          "name" : "password",
+          "value" : "DEC:{fTaCkUpMxybwKpHGt4+AEg==}"
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "N"
+        }, {
+          "name" : "exit_value",
+          "value" : "jwt"
+        }, {
+          "name" : "dependency",
+          "value" : ""
+        }, {
+          "name" : "last_status",
+          "value" : "Not executed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : ""
+        }, {
+          "name" : "action",
+          "value" : "POST"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://srvnuarintra.santander.dev.corp/sas/authenticate/credentials"
+        } ]
+      }, {
+        "tcid" : "GP_TC01",
+        "name" : "Add_New_KPIs_Authenticate_Without_Authorization",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request donde se le introducira un token con valor vacio, validar el campo status code sea '401', comprobar que el campo 'detailedMessage' tenga el valor 'Invalid credentials'",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "401.0"
+        }, {
+          "name" : "request",
+          "value" : "{\n   \"propuesta\":\"0049-0001-2021-11111\",\n   \"tipoPers\":\"F\",\n   \"codPers\": 1,\n   \"kpis\":\n    {\n        \"monthly\":[\n            { \"k\":\"KPI-Mensual\", \"v\": 7 }\n        ],\n        \"annual\": []\n    }\n}"
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=;Accept=*/*;Connection=keep-alive;Content-Type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : ""
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "httpMessage=Unauthorized;moreInformation=Not Authenticated"
+        }, {
+          "name" : "action",
+          "value" : "POST"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis"
+        } ]
+      }, {
+        "tcid" : "GP_TC02",
+        "name" : "Add_New_KPIs_Authenticate_Wrong_Authorization",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request donde se le introducira un token con valor erróneo, validar el campo status code sea '401', comprobar que el campo 'detailedMessage' tenga el valor 'Invalid credentials'",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "401.0"
+        }, {
+          "name" : "request",
+          "value" : "{\n   \"propuesta\":\"0049-0001-2021-11111\",\n   \"tipoPers\":\"F\",\n   \"codPers\": 1,\n   \"kpis\":\n    {\n        \"monthly\":[\n            { \"k\":\"KPI-Mensual\", \"v\": 7 }\n        ],\n        \"annual\": []\n    }\n}"
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=prueba;Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : ""
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "httpMessage=Unauthorized;moreInformation=Not Authenticated"
+        }, {
+          "name" : "action",
+          "value" : "POST"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis"
+        } ]
+      }, {
+        "tcid" : "GP_TC03",
+        "name" : "Add_New_KPIs_Validate_Wrong_Header",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request informando con valor erróneo el header X-ClientId",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "403.0"
+        }, {
+          "name" : "request",
+          "value" : "{\n   \"propuesta\":\"0049-0001-2021-11111\",\n   \"tipoPers\":\"F\",\n   \"codPers\": 1,\n   \"kpis\":\n    {\n        \"monthly\":[\n            { \"k\":\"KPI-Mensual\", \"v\": 7 }\n        ],\n        \"annual\": []\n    }\n}"
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=prueba"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "moreInformation=Unauthorized by Registry APIs, you are not subscribed to the api you are calling in /v1/kpis;httpMessage=Unauthorized by Registry APIs, you are not subscribed to the api you are calling;httpCode=403"
+        }, {
+          "name" : "action",
+          "value" : "POST"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis"
+        } ]
+      }, {
+        "tcid" : "GP_TC04",
+        "name" : "Add_New_KPIs_Validate_Without_Header",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request informando con valor vacío el header X-ClientId",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "403.0"
+        }, {
+          "name" : "request",
+          "value" : "{\n   \"propuesta\":\"0049-0001-2021-11111\",\n   \"tipoPers\":\"F\",\n   \"codPers\": 1,\n   \"kpis\":\n    {\n        \"monthly\":[\n            { \"k\":\"KPI-Mensual\", \"v\": 7 }\n        ],\n        \"annual\": []\n    }\n}"
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "moreInformation=Unauthorized by Registry APIs, you are not subscribed to the api you are calling in /v1/kpis;httpMessage=Unauthorized by Registry APIs, you are not subscribed to the api you are calling;httpCode=403"
+        }, {
+          "name" : "action",
+          "value" : "POST"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis"
+        } ]
+      }, {
+        "tcid" : "GP_TC05",
+        "name" : "Add_New_KPIs_Validate_InternalCode_10",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request con petición incorrecta, se devolverá un internalCode “10” (“Petición recibida, no se procesa. Faltan datos en la parte de los KPIs, ya sea anuales o mensuales.”)",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "200.0"
+        }, {
+          "name" : "request",
+          "value" : "{\n   \"propuesta\":\"0049-0001-2021-1111111\",\n   \"tipoPers\":\"F\",\n   \"codPers\": 1,\n   \"kpis\":\n    {\n        \"monthly\":[\n            { \"k\":\"KPI-Mensual\", \"v\": 7 }\n        ],\n        \"anually\": []\n    }\n}"
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "appName=Synaptic Data Intake;appKey=synint;internalCode=10"
+        }, {
+          "name" : "action",
+          "value" : "POST"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis"
+        } ]
+      }, {
+        "tcid" : "GP_TC06",
+        "name" : "Add_New_KPIs_Validate_InternalCode_00",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request, se devolverá un internalCode “00” (“Petición Recibida”). Validar formato de ID devuelto.",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "200.0"
+        }, {
+          "name" : "request",
+          "value" : "{\n   \"propuesta\":\"0049-0001-2021-11111\",\n   \"tipoPers\":\"F\",\n   \"codPers\": 1,\n   \"kpis\":\n    {\n        \"monthly\":[\n            { \"k\":\"KPI-Mensual\", \"v\": 7 }\n        ],\n        \"annual\": []\n    }\n}"
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : "data.requestId"
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "appName=Synaptic Data Intake;appKey=synint;internalCode=00"
+        }, {
+          "name" : "action",
+          "value" : "POST"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis"
+        } ]
+      }, {
+        "tcid" : "GP_TC07",
+        "name" : "Add_New_KPIs_Validate_Wrong_Body",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request con el body erróneo.",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "200.0"
+        }, {
+          "name" : "request",
+          "value" : "{\n   \"propuesta\":\"0049-0001-2021-1111111\",\n   \"tipoPers\":\"F\",\n   \"codPers\": 1,\n   \"kpis\":\n    {\n        \"monthly\":[\n            { \"k\":\"KPI-Mensual\", \"v\": 7 }\n        ],\n        \"anually\": []\n    }\n}"
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "appName=Synaptic Data Intake;appKey=synint;internalCode=10"
+        }, {
+          "name" : "action",
+          "value" : "POST"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis"
+        } ]
+      }, {
+        "tcid" : "GP_TC08",
+        "name" : "Add_New_KPIs_Validate_Without_Body",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request con el body vacío.",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "400.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "httpCode=400;httpMessage=httpmessage_not_readable_exception"
+        }, {
+          "name" : "action",
+          "value" : "POST"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis"
+        } ]
+      }, {
+        "tcid" : "GP_TC09",
+        "name" : "Get_Proposal_KPIs_Authenticate_Without_Authorization",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request donde se le introducira un token con valor vacio, validar el campo status code sea '401', comprobar que el campo 'detailedMessage' tenga el valor 'Invalid credentials'",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "401.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=;Accept=*/*;Connection=keep-alive;X-ClientId=synint;Content-type=application/json"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : ""
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "httpMessage=Unauthorized;moreInformation=Not Authenticated"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis/0049-6-1-0021"
+        } ]
+      }, {
+        "tcid" : "GP_TC10",
+        "name" : "Get_Proposal_KPIs_Authenticate_Wrong_Authorization",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request donde se le introducira un token con valor erróneo, validar el campo status code sea '401', comprobar que el campo 'detailedMessage' tenga el valor 'Invalid credentials'",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "401.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=prueba;Accept=*/*;Connection=keep-alive;X-ClientId=synint;Content-type=application/json"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : ""
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "httpMessage=Unauthorized;moreInformation=Not Authenticated"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis/0049-6-1-0022"
+        } ]
+      }, {
+        "tcid" : "GP_TC11",
+        "name" : "Get_Proposal_KPIs_Validate_Wrong_Header",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request informando con valor erróneo el header X-ClientId",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "403.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;X-ClientId=prueba;Content-type=application/json"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "moreInformation=Unauthorized by Registry APIs, you are not subscribed to the api you are calling in /v1/kpis;httpMessage=Unauthorized by Registry APIs, you are not subscribed to the api you are calling;httpCode=403"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis/0049-6-1-0023"
+        } ]
+      }, {
+        "tcid" : "GP_TC12",
+        "name" : "Get_Proposal_KPIs_Validate_Without_Header",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request informando con valor vacío el header X-ClientId",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "403.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "moreInformation=Unauthorized by Registry APIs, you are not subscribed to the api you are calling in /v1/kpis;httpMessage=Unauthorized by Registry APIs, you are not subscribed to the api you are calling;httpCode=403"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis/0049-6-1-0024"
+        } ]
+      }, {
+        "tcid" : "GP_TC13",
+        "name" : "Get_Proposal_KPIs_Validate_InternalCode_01",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request con el ProposalId incorrecto manteniendo su formato,devolverá un InternalCode: \"01\".",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "200.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "appName=Synaptic Data Intake;appKey=synint;internalCode=01"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis/0049-0001-2021-11199"
+        } ]
+      }, {
+        "tcid" : "GP_TC14",
+        "name" : "Get_Proposal_KPIs_Validate_InternalCode_00",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request con el ProposalId correcto, se devolverá un internalCode “00”.",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "200.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "appName=Synaptic Data Intake;appKey=synint;internalCode=00"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis/0049-0001-2021-11111"
+        } ]
+      }, {
+        "tcid" : "GP_TC15",
+        "name" : "Get_Proposal_KPIs_Validate_Wrong_id_KPIs_Control_InternalCode_10",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request con el  ProposalId con formato erroneo, devuelve internalCode: \"10\".",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "200.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "appName=Synaptic Data Intake;appKey=synint;internalCode=10"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis/004"
+        } ]
+      }, {
+        "tcid" : "GP_TC16",
+        "name" : "Get_Proposal_KPIs_Validate_Without_ProposalId",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request con el ProposalId vacio, devolverá un error 405 y lo validamos.",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "405.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "httpCode=405;httpMessage=http_internal_exception;moreInformation=HttpRequestMethodNotSupportedException"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/kpis/"
+        } ]
+      }, {
+        "tcid" : "GP_TC18",
+        "name" : "Get_Status_Of_KPI_Request_Authenticate_Without_Authorization",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request donde se le introducira un token con valor vacio, validar el campo status code sea '401', comprobar que el campo 'detailedMessage' tenga el valor 'Invalid credentials'",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "401.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=;Accept=*/*;Connection=keep-alive;X-ClientId=synint;Content-type=application/json"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : ""
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "httpMessage=Unauthorized;moreInformation=Not Authenticated"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/requests/47ef2de0-476c-416e-831a-7a200c9a31d3"
+        } ]
+      }, {
+        "tcid" : "GP_TC19",
+        "name" : "Get_Status_Of_KPI_Request_Authenticate_Wrong_Authorization",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request donde se le introducira un token con valor erróneo, validar el campo status code sea '401', comprobar que el campo 'detailedMessage' tenga el valor 'Invalid credentials'",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "401.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=prueba;Accept=*/*;Connection=keep-alive;X-ClientId=synint;Content-type=application/json"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : ""
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "httpMessage=Unauthorized;moreInformation=Not Authenticated"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/requests/47ef2de0-476c-416e-831a-7a200c9a31d4"
+        } ]
+      }, {
+        "tcid" : "GP_TC20",
+        "name" : "Get_Status_Of_KPI_Request_Validate_Wrong_Header",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request informando con valor erróneo el header X-ClientId",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "403.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;X-ClientId=prueba;Content-type=application/json"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "moreInformation=Unauthorized by Registry APIs, you are not subscribed to the api you are calling in /v1/requests/cc8a27c5-5e5e-4bec-b8e3-0ffde16a4ab9;httpMessage=Unauthorized by Registry APIs, you are not subscribed to the api you are calling;httpCode=403"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/requests/cc8a27c5-5e5e-4bec-b8e3-0ffde16a4ab9"
+        } ]
+      }, {
+        "tcid" : "GP_TC21",
+        "name" : "Get_Status_Of_KPI_Request_Validate_Without_Header",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request informando con valor vacío el header X-ClientId",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "403.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "moreInformation=Unauthorized by Registry APIs, you are not subscribed to the api you are calling in /v1/requests/cc8a27c5-5e5e-4bec-b8e3-0ffde16a4ab9;httpMessage=Unauthorized by Registry APIs, you are not subscribed to the api you are calling;httpCode=403"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/requests/cc8a27c5-5e5e-4bec-b8e3-0ffde16a4ab9"
+        } ]
+      }, {
+        "tcid" : "GP_TC22",
+        "name" : "Get_Status_Of_KPI_Request_Validate_InternalCode_01",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una request se devolverá un internalCode “01” si la propuesta no existe.",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "200.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "appName=Synaptic Data Intake;appKey=synint;internalCode=01"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/requests/cc8a27c5-5e5e-4bec-b8e3-0ffde16a4a23"
+        } ]
+      }, {
+        "tcid" : "GP_TC23",
+        "name" : "Get_Status_Of_KPI_Request_Validate_InternalCode_00",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una petición con el requestId correcto se devolverá un internalCode: “00” si la petición se procesa correctamente.",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "200.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00;GP_TC06"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "appName=Synaptic Data Intake;appKey=synint;internalCode=00"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/requests/${data.requestId}"
+        } ]
+      }, {
+        "tcid" : "GP_TC24",
+        "name" : "Get_Status_Of_KPI_Request_Validate_Wrong_id_KPIs",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una petición con el RequestId erróneo, devuelve internalCode: \"01\" si la petición es incorrecta.",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "200.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "appName=Synaptic Data Intake;appKey=synint;internalCode=01"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/requests/cc8a27c3"
+        } ]
+      }, {
+        "tcid" : "GP_TC25",
+        "name" : "Get_Status_Of_KPI_Request_Validate_Without_id_KPIs",
+        "testclass" : "TC_MainCase",
+        "description" : "Se realiza una petición con el requestId vacío, devuelve un error \"404\" si el requestId está vacio.",
+        "device" : "",
+        "tags" : "SDI;KPI",
+        "priority" : 9,
+        "criticality" : true,
+        "runnable" : "Y",
+        "data" : [ {
+          "name" : "response_statuscode",
+          "value" : "404.0"
+        }, {
+          "name" : "request",
+          "value" : ""
+        }, {
+          "name" : "headers",
+          "value" : "Authorization=Bearer ${jwt};Accept=*/*;Connection=keep-alive;Content-type=application/json;X-ClientId=synint"
+        }, {
+          "name" : "password",
+          "value" : ""
+        }, {
+          "name" : "response_content_type",
+          "value" : "application/json"
+        }, {
+          "name" : "¿is_testcase?",
+          "value" : "Y"
+        }, {
+          "name" : "exit_value",
+          "value" : ""
+        }, {
+          "name" : "dependency",
+          "value" : "GP_TC00"
+        }, {
+          "name" : "last_status",
+          "value" : "Passed"
+        }, {
+          "name" : "response_field_validation",
+          "value" : "moreInformation=Not Found in /v1/requests/;httpMessage=Not Found;httpCode=404"
+        }, {
+          "name" : "action",
+          "value" : "GET"
+        }, {
+          "name" : "response_header_validation",
+          "value" : ""
+        }, {
+          "name" : "url",
+          "value" : "https://motorsdi.santander.dev.corp/v1/requests/"
+        } ]
+      } ]
+    } ]
+  }
+}
